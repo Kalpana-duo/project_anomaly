@@ -5,6 +5,7 @@ import numpy as np
 
 from skimpy import clean_columns
 
+import env_mm
 from env_mm import user, password, host, get_connection
 
 
@@ -53,6 +54,56 @@ def get_logs_dataset():
         return df
 
 
+'''function that takes in the dataframe and sets the date & time as
+timestamp. function also creates new day & month columns'''
+def clean_dates(df):
+
+    # combining date and time & dropping previous columns
+        df["datetime"] = df["date"] + " " + df["time"]
+        df = df.drop(columns = ["date", "time", "cohort_id"])
+
+        # converting datetime column to proper pd.datetime 
+        df["datetime"] = pd.to_datetime(df["datetime"])
+
+        # setting the date column to index
+        df = df.set_index("datetime").rename_axis(None).sort_index()
+        
+        # creating a day column 
+        df["day"] = df.index.strftime("%A")
+
+        # creating a month column 
+        df["month"] = df.index.strftime("%B")
+
+        # printing the new dataframe shape
+        print(f'new df shape: {df.shape}')
+
+        # return the dataframe
+        return df
+
+
+'''function that returns the endpoint class and topic'''
+def get_endpoint_targets(df):
+
+    topics = df["endpoint"]. \
+        str. \
+        split(
+            "/", 
+            n = 1, 
+            expand = True). \
+            rename(columns = {0: "class", 1: "topic"}
+            )
+    
+    # combining the two(2) dataframes
+    new_df = pd.concat([df, topics], axis = 1)
+
+    # printing the new dataframe shape
+    print(f'df shape: {new_df.shape}')
+
+    # returns the new df w/endpoint class and topics
+    return new_df
+
+
+
 # Codeup program_id to program type map:
 # 1 = "full-stack PHP program"
 # 2 = "full-stack JAVA program"
@@ -69,6 +120,9 @@ def map_program_id(df):
         3: "DS_program", 
         4: "Front_End_program", 
         np.nan: np.nan})
+
+    # drop redundant column 
+    df = df.drop(columns = "program_id")
 
     # returning the dataframe
     return df
