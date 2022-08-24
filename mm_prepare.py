@@ -177,3 +177,44 @@ def parse_log_entry(entry):
     output['user_agent'] = ' '.join(parts[11:]).replace('"', '')
     return pd.Series(output)
 
+
+'''function that cleans specific "lesson" column values'''
+def clean_lesson(df):
+    
+    df['class'] = np.where(df['class'] == '1-fundamentals', 'fundamentals', df['class'])
+    df['class'] = np.where(df['class'] == '2-storytelling', 'storytelling', df['class'])
+    df['class'] = np.where(df['class'] == '3-sql', 'sql', df['class'])
+    df['class'] = np.where(df['class'] == '4-python', 'python', df['class'])
+    df['class'] = np.where(df['class'] == '5-stats', 'stats', df['class'])
+    df['class'] = np.where(df['class'] == '6-regression', 'regression', df['class'])
+    df['class'] = np.where(df['class'] == '7-classification', 'classification', df['class'])
+    df['class'] = np.where(df['class'] == '8-clustering', 'clustering', df['class'])
+    df['class'] = np.where(df['class'] == '9-timeseries', 'timeseries', df['class'])
+    df['class'] = np.where(df['class'] == '10-anomaly-detection', 'anomaly-detection', df['class'])
+    df['class'] = np.where(df['class'] == '11-nlp', 'nlp', df['class'])
+    df['class'] = np.where(df['class'] == '12-distributed-ml', 'distributed-ml', df['class'])
+    df['class'] = np.where(df['class'] == '13-advanced-topics', 'advanced-topics', df['class'])
+    df['class'] = np.where(df['class'] == 'Intro_to_Regression_Module', 'regression', df['class'])
+    df['class'] = np.where(df['class'] == '3.0-mysql-overview', 'mysql', df['class'])
+    df['class'] = np.where(df['class'] == 'Regression_Python', 'regression', df['class'])
+    df['class'] = np.where(df['class'] == '1._Fundamentals', 'Fundamentals', df['class'])
+    df['class'] = np.where(df['class'] == '4.6.3_introduction_to_pandas', 'pandas', df['class'])
+    df['class'] = np.where(df['class'] == '3.0-mysql-overview', 'mysql', df['class'])
+    df['class'] = np.where(df['class'] == '5-regression', 'regression', df['class'])
+    df['class'] = np.where(df['class'] == '3.1-mysql-introduction', 'mysql', df['class'])
+    df['class'] = np.where(df['class'] == 'Regression_Project', 'regression', df['class'])
+    df['class'] = np.where(df['class'] == '6-classification', 'classification', df['class'])
+    
+    return df
+
+'''function that returns a df of unique null feature records'''
+def get_fifty_3(df):
+
+    new_df = df.loc[df[[
+        "name", 
+        "slack", 
+        "start_date", 
+        "end_date", 
+        "program_type"]].isnull().apply(lambda x: all(x), axis=1)]
+
+    return new_df
