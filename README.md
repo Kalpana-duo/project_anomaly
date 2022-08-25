@@ -1,7 +1,16 @@
-# Project - Anomaly Detection
+# Anomaly Detection Project: Curriculum Logs
 
-By: Chenchen Feng and Mijail Mariano
-23AUGUST2022
+**Created By:**
+
+Chenchen Feng
+
+[github.com/Chenchen070](https://github.com/Chenchen070)
+
+Mijail Mariano
+
+[github.com/mijailmariano](https://github.com/mijailmariano)
+
+----
 
 ## Project Goal
 * The goal is by analyzing Codeup curriculum access data, identify suspicious activities and ip address. Also get some insights from this data for future use.
@@ -27,10 +36,10 @@ By: Chenchen Feng and Mijail Mariano
 
 ## Steps to Reproduce
 
-1. You will need an env.py file that contains the hostname, username and password of the mySQL database that contains the Zillow table. Store that env file locally in the repository.
-2. Clone my repo (including the acquire_final.py and prepare_final.py) (confirm .gitignore is hiding your env.py file)
-3. Libraries used are pandas, matplotlib, seaborn, numpy, os.
-4. You should be able to run final_report.
+1. You will need an env.py file that contains the hostname, username and password of Codeup LLC MySQL database which contains the logs & cohort tables. Store that env file locally in the repository.
+2. Clone this repo (including the acquire_final.py and prepare_final.py) (confirm .gitignore is hiding your env.py file)
+3. Primary libraries include pandas, matplotlib, seaborn, numpy, os.
+4. You should be able to run final_report with this environment.
 
 ## Scenario:
 
@@ -51,9 +60,8 @@ I have some questions for you that I need answered before the board meeting Thur
 7. Which lessons are least accessed?
 8. Anything else I should be aware of?
 
-Thank you,
 
-## Initial Questions We Picked and Answers
+## Questions Selected and Answered
 
 1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
 (Mijail)
