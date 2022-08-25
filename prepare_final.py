@@ -309,3 +309,39 @@ def return_most_visited_lessons_all_time(df):
     plt.ylabel(None)
     plt.title("Most Explored Codeup Topics: All Time")
     plt.show()
+
+
+
+def prep(df, user):
+    df = df[df.user_id == user]
+    pages = df['endpoint'].resample('d').count()
+    return pages
+
+
+def compute_pct_b(pages, span, weight, user):
+    midband = pages.ewm(span=span).mean()
+    stdev = pages.ewm(span=span).std()
+    ub = midband + stdev*weight
+    lb = midband - stdev*weight
+    bb = pd.concat([ub, lb], axis=1)
+    my_df = pd.concat([pages, midband, bb], axis=1)
+    my_df.columns = ['pages', 'midband', 'ub', 'lb']
+    my_df['pct_b'] = (my_df['pages'] - my_df['lb'])/(my_df['ub'] - my_df['lb'])
+    my_df['user_id'] = user
+    return my_df
+
+def plt_bands(my_df, user):
+    fig, ax = plt.subplots(figsize=(12,8))
+    ax.plot(my_df.index, my_df.pages, label='Number of Pages, User: '+str(user))
+    ax.plot(my_df.index, my_df.midband, label = 'EMA/midband')
+    ax.plot(my_df.index, my_df.ub, label = 'Upper Band')
+    ax.plot(my_df.index, my_df.lb, label = 'Lower Band')
+    ax.legend(loc='best')
+    ax.set_ylabel('Number of Pages')
+    plt.show()
+
+def find_anomalies(df, user, span, weight):
+    pages = prep(df, user)
+    my_df = compute_pct_b(pages, span, weight, user)
+    # plt_bands(my_df, user)
+    return my_df[my_df.pct_b>1]
