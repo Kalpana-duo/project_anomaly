@@ -10,7 +10,6 @@ def clean_dates(df):
 
     # combining date and time & dropping previous columns
     df["datetime"] = df["date"] + " " + df["time"]
-    df = df.drop(columns = ["date", "time"])
 
     # converting datetime column to proper pd.datetime 
     df["datetime"] = pd.to_datetime(df["datetime"])
@@ -18,12 +17,6 @@ def clean_dates(df):
     # setting the date column to index
     df = df.set_index("datetime").sort_index()
     
-    # creating a day column 
-    df["day"] = df.index.strftime("%A")
-
-    # creating a month column 
-    df["month"] = df.index.strftime("%B")
-
     # printing the new dataframe shape
     print(f'new df shape: {df.shape}')
 
