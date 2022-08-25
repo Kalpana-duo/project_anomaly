@@ -57,8 +57,8 @@ Thank you,
 
 1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
 (Mijail)
-
-* For all programs -- Most Frequent Class/Module Visited: 
+``While Attending Codeup``
+* For all programs --  Most Frequent Class/Module Visited: 
   1. javascript-i
   2. html-css
   3. mysql
@@ -84,7 +84,7 @@ Thank you,
 
 2. Is there a cohort that referred to a lesson significantly more than other cohorts seemed to gloss over? (Chenchen)
 * For Data Sience program, Darden referred classification lesson a lot more than other cohorts. 
-* For Full Stack JAVA program, Ceres referred html-css class tha most.
+* For Full Stack JAVA program, Ceres referred html-css class the most.
 
 3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? (Chenchen)
 * The active student hardly access the curriculum is user 704 from Bash cohort, this is a remote student from Full Stack JAVA program. 
@@ -155,7 +155,7 @@ Most Frequent Class/Module Revisited:
   9. javascript-ii   
   10. appendix        
  
-Most Frequent Topics Explored:
+Most Frequent Topics Revisited:
 
   1. introduction     
   2. fundamentals 
@@ -171,53 +171,61 @@ Most Frequent Topics Explored:
 * Codeup Program: DS_program
 Most Frequent Class/Module Revisited:
 
-  1. fundamentals    
-  2. classification 
-  3. sql        
-  4. python         
-  5. regression  
-  6. appendix     
-  7. stats      
+  1. sql    
+  2. fundamentals
+  3. classification 
+  4. python        
+  5. regression         
+  6. anomaly-detection
+  7. stats
+  8. appendix     
+  9. timeseries
+  10. serch
 
-Most Frequent Topics Explored:
+Most Frequent Topics Revisited:
 
   1. overview              
-  2. overview           
-  3. project                 
-  4. AI-ML-DL-timeline.jpg     
-  5. modern-data-scientist.jpg   
-  6. cli                        
-  7. search_index.json         
-  8. 1.1-intro-to-data-science   
-  9. scale_features_or_not.svg  
-  10. explore                     
+  2. search_index.json           
+  3. AI-ML-DL-timeline.jpg                 
+  4. modern-data-scientist.jpg     
+  5. mysql-overview   
+  6. 1-overview                        
+  7. anomaly detection cartoon.jpegg         
+  8. explore   
+  9. acquire  
+  10. intro to data science                     
 
 
 7. Which lessons are least accessed? (Mijail)
 
-* Codeup Program: FS_PHP_program
-Least Frequent Class/Module Revisited:
-
-  1. 2.00.02_Navigating_Excel                
-  2. 2.00.05_Charts_PivotTables_Sparklines   
-  3. 2.02.00_Inferential_Stats               
-  4. Exercises                               
-  5. ajax-api-request.html  
-
 * Codeup Program: FS_JAVA_program
-Least Frequent Class/Module Revisited:
 
-  1. Correlation.md                 
-  2. Clustering_Explore             
-  3. 5.04.04_LeastAngleRegression   
-  4. 6.00_Intro                     
-  5. curie-python-assessment    
+Least Frequent Class/Module Visited:
+  1. 3.2-databases                 
+  2. 3.4-basic-statements             
+  3. 3.6-functions   
+  4. 3.9-temporary-tables                     
+  5. css   
+ 
+Least Frequent Topic Visited:
+  1. twitter.html
+  2. 9.3-joins
+  3. 120
+  4. apendix
+  5. PreWork
 
 * Codeup Program: DS_program
-Least Frequent Class/Module Revisited:
 
-  1. modern-data-scientist.jpg   
-  2. git                         
-  3. spring                      
-  4. login                       
-  5. individual-project     
+Least Frequent Class/Module Visited:
+  1. End_to_End_clustering
+  2. end_to_end_clustering                           
+  3. 4.2-compare-means                        
+  4. DataToAction_v2.jpg                        
+  5. statistics-assessment       
+
+Least Frequent Topic Visited:
+  1. 6.1-parametric-modeling
+  2. getUserDetails
+  3. 4-navigating-the-filesystem 
+  4. cls
+  5. explore-old
