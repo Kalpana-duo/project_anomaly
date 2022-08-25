@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 
 import env
-from env import user, password, host, get_connection
+from env import user, password, host
 
 
 '''Function to retrieve Codeup Curriculum Logs and cache as .csv file'''
