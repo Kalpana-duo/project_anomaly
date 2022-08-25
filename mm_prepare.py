@@ -30,20 +30,21 @@ def get_logs_dataset():
 
         # creating the MySQL query
         query = '''
-                    SELECT date, 
-                    time, 
-                    path as endpoint, 
-                    user_id, 
-                    cohort_id, 
-                    ip, 
-                    name, 
-                    slack, 
-                    start_date,
-                    end_date, 
-                    program_id
-                    FROM curriculum_logs.logs
-                    LEFT JOIN curriculum_logs.cohorts ON curriculum_logs.logs.cohort_id = curriculum_logs.cohorts.id;
-                    '''
+                SELECT 
+                date, 
+                time,
+                path as endpoint,
+                user_id,
+                cohort_id,
+                ip,
+                name,
+                slack,
+                start_date,
+                end_date,
+                program_id,
+                FROM curriculum_logs.logs
+                LEFT JOIN curriculum_logs.cohorts ON curriculum_logs.logs.cohort_id = curriculum_logs.cohorts.id;
+                '''
 
         # creating the df
         df = pd.read_sql(query, url)
@@ -59,39 +60,33 @@ timestamp. function also creates new day & month columns'''
 def clean_dates(df):
 
     # combining date and time & dropping previous columns
-        df["datetime"] = df["date"] + " " + df["time"]
-        df = df.drop(columns = ["date", "time", "cohort_id"])
+    df["datetime"] = df["date"] + " " + df["time"]
+    df = df.drop(columns = ["date", "time", "cohort_id"])
 
-        # converting datetime column to proper pd.datetime 
-        df["datetime"] = pd.to_datetime(df["datetime"])
+    # converting datetime column to proper pd.datetime 
+    df["datetime"] = pd.to_datetime(df["datetime"])
 
-        # setting the date column to index
-        df = df.set_index("datetime").rename_axis(None).sort_index()
-        
-        # creating a day column 
-        df["day"] = df.index.strftime("%A")
+    # setting the date column to index
+    df = df.set_index("datetime").rename_axis(None).sort_index()
+    
+    # creating a day column 
+    df["day"] = df.index.strftime("%A")
 
-        # creating a month column 
-        df["month"] = df.index.strftime("%B")
+    # creating a month column 
+    df["month"] = df.index.strftime("%B")
 
-        # printing the new dataframe shape
-        print(f'new df shape: {df.shape}')
+    # printing the new dataframe shape
+    print(f'new df shape: {df.shape}')
 
-        # return the dataframe
-        return df
+    # return the dataframe
+    return df
 
 
 '''function that returns the endpoint class and topic'''
 def get_endpoint_targets(df):
 
-    topics = df["endpoint"]. \
-        str. \
-        split(
-            "/", 
-            n = 1, 
-            expand = True). \
-            rename(columns = {0: "class", 1: "topic"}
-            )
+    topics = df["endpoint"].str.split("/", n = 2, expand = True).rename(columns = {0: "class", 1: "topic"})
+    topics = topics.drop(columns = 2)
     
     # combining the two(2) dataframes
     new_df = pd.concat([df, topics], axis = 1)
@@ -101,7 +96,6 @@ def get_endpoint_targets(df):
 
     # returns the new df w/endpoint class and topics
     return new_df
-
 
 
 # Codeup program_id to program type map:
@@ -119,7 +113,7 @@ def map_program_id(df):
         2: "FS_JAVA_program", 
         3: "DS_program", 
         4: "Front_End_program", 
-        np.nan: np.nan})
+        np.nan: None})
 
     # drop redundant column 
     df = df.drop(columns = "program_id")
@@ -181,29 +175,55 @@ def parse_log_entry(entry):
 '''function that cleans specific "lesson" column values'''
 def clean_lesson(df):
     
-    df['class'] = np.where(df['class'] == '1-fundamentals', 'fundamentals', df['class'])
-    df['class'] = np.where(df['class'] == '2-storytelling', 'storytelling', df['class'])
-    df['class'] = np.where(df['class'] == '3-sql', 'sql', df['class'])
-    df['class'] = np.where(df['class'] == '4-python', 'python', df['class'])
-    df['class'] = np.where(df['class'] == '5-stats', 'stats', df['class'])
-    df['class'] = np.where(df['class'] == '6-regression', 'regression', df['class'])
-    df['class'] = np.where(df['class'] == '7-classification', 'classification', df['class'])
-    df['class'] = np.where(df['class'] == '8-clustering', 'clustering', df['class'])
-    df['class'] = np.where(df['class'] == '9-timeseries', 'timeseries', df['class'])
-    df['class'] = np.where(df['class'] == '10-anomaly-detection', 'anomaly-detection', df['class'])
-    df['class'] = np.where(df['class'] == '11-nlp', 'nlp', df['class'])
-    df['class'] = np.where(df['class'] == '12-distributed-ml', 'distributed-ml', df['class'])
-    df['class'] = np.where(df['class'] == '13-advanced-topics', 'advanced-topics', df['class'])
-    df['class'] = np.where(df['class'] == 'Intro_to_Regression_Module', 'regression', df['class'])
-    df['class'] = np.where(df['class'] == '3.0-mysql-overview', 'mysql', df['class'])
-    df['class'] = np.where(df['class'] == 'Regression_Python', 'regression', df['class'])
-    df['class'] = np.where(df['class'] == '1._Fundamentals', 'Fundamentals', df['class'])
-    df['class'] = np.where(df['class'] == '4.6.3_introduction_to_pandas', 'pandas', df['class'])
-    df['class'] = np.where(df['class'] == '3.0-mysql-overview', 'mysql', df['class'])
-    df['class'] = np.where(df['class'] == '5-regression', 'regression', df['class'])
-    df['class'] = np.where(df['class'] == '3.1-mysql-introduction', 'mysql', df['class'])
-    df['class'] = np.where(df['class'] == 'Regression_Project', 'regression', df['class'])
-    df['class'] = np.where(df['class'] == '6-classification', 'classification', df['class'])
+    # Data Science program cleas clean up
+    df['class'] = np.where((df['class'] == 'fundamentals') & (df.program_type == 'DS_program'), 'ds-fundamentals', df['class'])
+    df['class'] = np.where((df['class'] == '1-fundamentals') & (df.program_type == 'DS_program'), 'ds-fundamentals', df['class'])
+    df['class'] = np.where((df['class'] == 'storytelling') & (df.program_type == 'DS_program'), 'ds-storytelling', df['class'])
+    df['class'] = np.where((df['class'] == '2-storytelling') & (df.program_type == 'DS_program'), 'ds-storytelling', df['class'])
+    df['class'] = np.where((df['class'] == 'sql') & (df.program_type == 'DS_program'), 'ds-sql', df['class'])
+    df['class'] = np.where((df['class'] == '3-sql') & (df.program_type == 'DS_program'), 'ds-sql', df['class'])
+    df['class'] = np.where((df['class'] == 'python') & (df.program_type == 'DS_program'), 'ds-python', df['class'])
+    df['class'] = np.where((df['class'] == '4-python') & (df.program_type == 'DS_program'), 'ds-python', df['class'])
+    df['class'] = np.where((df['class'] == 'stats') & (df.program_type == 'DS_program'), 'ds-stats', df['class'])
+    df['class'] = np.where((df['class'] == '5-stats') & (df.program_type == 'DS_program'), 'ds-stats', df['class'])
+    df['class'] = np.where((df['class'] == '6-regression') & (df.program_type == 'DS_program'), 'ds-regression', df['class'])
+    df['class'] = np.where((df['class'] == 'regression') & (df.program_type == 'DS_program'), 'ds-regression', df['class'])
+    df['class'] = np.where((df['class'] == 'classification') & (df.program_type == 'DS_program'), 'ds-classification', df['class'])
+    df['class'] = np.where((df['class'] == '7-classification') & (df.program_type == 'DS_program'), 'ds-classification', df['class'])
+    df['class'] = np.where((df['class'] == 'clustering') & (df.program_type == 'DS_program'), 'ds-clustering', df['class'])
+    df['class'] = np.where((df['class'] == '8-clustering') & (df.program_type == 'DS_program'), 'ds-clustering', df['class'])
+    df['class'] = np.where((df['class'] == 'timeseries') & (df.program_type == 'DS_program'), 'ds-timeseries', df['class'])
+    df['class'] = np.where((df['class'] == '9-timeseries') & (df.program_type == 'DS_program'), 'ds-timeseries', df['class'])
+    df['class'] = np.where((df['class'] == 'anomaly-detection') & (df.program_type == 'DS_program'), 'ds-anomaly-detection', df['class'])
+    df['class'] = np.where((df['class'] == '10-anomaly-detection') & (df.program_type == 'DS_program'), 'ds-anomaly-detection', df['class'])
+    df['class'] = np.where((df['class'] == 'nlp') & (df.program_type == 'DS_program'), 'ds-nlp', df['class'])
+    df['class'] = np.where((df['class'] == '11-nlp') & (df.program_type == 'DS_program'), 'ds-nlp', df['class'])
+    df['class'] = np.where((df['class'] == 'distributed-ml') & (df.program_type == 'DS_program'), 'ds-distributed-ml', df['class'])
+    df['class'] = np.where((df['class'] == '12-distributed-ml') & (df.program_type == 'DS_program'), 'ds-distributed-ml', df['class'])
+    df['class'] = np.where((df['class'] == 'advanced-topics') & (df.program_type == 'DS_program'), 'ds-advanced-topics', df['class'])
+    df['class'] = np.where((df['class'] == '13-advanced-topics') & (df.program_type == 'DS_program'), 'ds-advanced-topics', df['class'])
+    df['class'] = np.where((df['class'] == 'appendix') & (df.program_type == 'DS_program'), 'ds-appendix', df['class'])
+    
+    # the rest class will belong to Full-Stack program
+    df['class'] = np.where((df['class'] == '1-fundamentals'), 'fundamentals', df['class'])
+    df['class'] = np.where((df['class'] == '10-anomaly-detection'), 'anomaly-detection', df['class'])
+    df['class'] = np.where((df['class'] == '6-regression'), 'regression', df['class'])
+    df['class'] = np.where((df['class'] == '3-sql'), 'sql', df['class'])
+    df['class'] = np.where((df['class'] == '4-python'), 'python', df['class'])
+    df['class'] = np.where((df['class'] == '5-stats'), 'stats', df['class'])
+    df['class'] = np.where((df['class'] == '7-classification'), 'classification', df['class'])
+    df['class'] = np.where((df['class'] == '2-storytelling'), 'storytelling', df['class'])
+    df['class'] = np.where((df['class'] == '9-timeseries'), 'timeseries', df['class'])
+    df['class'] = np.where((df['class'] == '8-clustering'), 'clustering', df['class'])
+    df['class'] = np.where((df['class'] == '11-nlp'), 'nlp', df['class'])
+    df['class'] = np.where((df['class'] == '12-distributed-ml'), 'distributed-ml', df['class'])
+    df['class'] = np.where((df['class'] == '1._Fundamentals'), 'fundamentals', df['class'])
+    df['class'] = np.where((df['class'] == '5-regression'), 'regression', df['class'])
+    df['class'] = np.where((df['class'] == '6-classification'), 'classification', df['class'])
+    df['class'] = np.where((df['class'] == '9-anomaly-detection'), 'anomaly-detection', df['class'])
+    df['class'] = np.where((df['class'] == '3.0-mysql-overview'), 'mysql', df['class'])
+    df['class'] = np.where((df['class'] == '13-advanced-topics'), 'advanced-topics', df['class'])
+    df['class'] = np.where((df['class'] == '2-stats'), 'stats', df['class'])
     
     return df
 
