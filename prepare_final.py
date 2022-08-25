@@ -17,9 +17,6 @@ def clean_dates(df):
     # setting the date column to index
     df = df.set_index("datetime").sort_index()
     
-    # printing the new dataframe shape
-    print(f'new df shape: {df.shape}')
-
     # return the dataframe
     return df
 
@@ -33,9 +30,6 @@ def get_endpoint_targets(df):
     # combining the two(2) dataframes
     new_df = pd.concat([df, topics], axis = 1)
 
-    # printing the new dataframe shape
-    print(f'df shape: {new_df.shape}')
-
     # returns the new df w/endpoint class and topics
     return new_df
 
@@ -44,12 +38,10 @@ def clean_anomalies(df):
     # setting the program_id to object type
     df[["user_id", "program_id"]] = df[["user_id", "program_id"]].astype(object)
 
-    # drop single missing values in endpoint and class (same record)
-    df = df.dropna(subset = "endpoint")
-
     # cleaning columns with empty class or nulls
     df = df.apply(lambda x: x.str.strip() if isinstance(x, str) else x).replace('', None)
 
+    return df
 
 # Codeup program_id to program type map:
 # 1 = "full-stack PHP program"
@@ -67,9 +59,6 @@ def map_program_id(df):
         3: "DS_program", 
         4: "Front_End_program", 
         np.nan: None})
-
-    # drop redundant column 
-    df = df.drop(columns = "program_id")
 
     # returning the dataframe
     return df
