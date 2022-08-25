@@ -2,6 +2,8 @@
 
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 
 '''function that takes in the dataframe and sets the date & time as
@@ -42,6 +44,21 @@ def clean_anomalies(df):
     df = df.apply(lambda x: x.str.strip() if isinstance(x, str) else x).replace('', None)
 
     return df
+
+'''function to handle missing values in log dataset.'''
+def missing_values(df):
+
+    # filling in null values with '0' value
+    df["topic"] = df["topic"].fillna(0)
+
+    df["class"] = df["class"].fillna(0)
+
+    # dropping single record in 'endpoint' column 
+    df = df.dropna(subset=['endpoint'])
+
+    # returning the dataframe
+    return df
+
 
 # Codeup program_id to program type map:
 # 1 = "full-stack PHP program"
@@ -183,8 +200,41 @@ def get_fifty_3(df):
 
 '''Function that plots the post-grad topic revisits'''
 def most_grad_revisits(df):
+
+    grad = df.copy()
+
     # list of programs to plot (exludes null values)
     lst = ['FS_PHP_program', 'FS_JAVA_program', 'Front_End_program', 'DS_program']
+    
+    for program in lst:
+
+        if program != "Front_End_program":
+            plt.figure(figsize = (8, 4))
+            sns.set(font_scale = 1)
+
+            df1 = grad[grad["program_type"] == program]
+
+            df1 = df1.applymap(lambda s: s.capitalize() if type(s) == str else s)
+
+            sns.countplot(
+                y = "class", 
+                data = df1,
+                order = df1["class"].value_counts()[0:11].index,
+                palette = "crest_r")
+
+            plt.ylabel(None)
+            plt.xlabel(None)
+            plt.title(f'Top 10 Revisited Lessons Post Graduation: {program}')
+            plt.show()
+
+'''function to plot most revisited topics for alumni'''
+def most_grad_revisits_topics(df):
+
+    grad = df.copy()
+
+    # list of programs to plot (exludes null values)
+    lst = ['FS_PHP_program', 'FS_JAVA_program', 'Front_End_program', 'DS_program']
+    
     for program in lst:
 
         if program != "Front_End_program":
@@ -202,7 +252,60 @@ def most_grad_revisits(df):
                 palette = "crest_r")
 
             plt.ylabel(None)
-            plt.xlabel("Count")
+            plt.xlabel(None)
             plt.title(f'Top 10 Revisited Topics Post Graduation: {program}')
             plt.show()
 
+'''Function that plots the current topic revisits'''
+def most_current_visits(df):
+
+    curr = df.copy()
+
+    # list of programs to plot (exludes null values)
+    lst = ['FS_JAVA_program', 'DS_program']
+    
+    for program in lst:
+        
+        plt.figure(figsize = (8, 4))
+        sns.set(font_scale = 1)
+
+        df1 = curr[curr["program_type"] == program]
+
+        df1 = df1.applymap(lambda s: s.capitalize() if type(s) == str else s)
+
+        sns.countplot(
+            y = "class", 
+            data = df1,
+            order = df1["class"].value_counts()[0:11].index,
+            palette = "crest_r")
+
+        plt.ylabel(None)
+        plt.xlabel(None)
+        plt.title(f'While Enrolled: Top-10 Lessons Visited: {program}')
+        plt.show()
+
+
+def value_counts_and_frequencies(s: pd.Series, dropna=True) -> pd.DataFrame:
+    return pd.merge(
+        s.value_counts(dropna=True)[0:6].rename('Count'),
+        s.value_counts(dropna=True, normalize=True)[0:6].rename('Percentage').round(2),
+        left_index=True,
+        right_index=True,
+    )
+
+
+'''function that returns the top 30 most frequent classes as a plot'''
+def return_most_visited_lessons_all_time(df):
+    
+    plt.figure(figsize=(14, 10))
+    sns.set(font_scale = 1)
+
+    sns.countplot(
+        y = "topic", 
+        data = df,
+        order = df["topic"].value_counts(dropna = True)[0:31].index,
+        palette = "crest_r")
+
+    plt.ylabel(None)
+    plt.title("Most Explored Codeup Topics: All Time")
+    plt.show()
