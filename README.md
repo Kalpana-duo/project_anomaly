@@ -58,41 +58,29 @@ Thank you,
 1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
 (Mijail)
 
-* for all programs:
+* For all programs -- Most Frequent Class/Module Visited: 
+  1. javascript-i
+  2. html-css
+  3. mysql
+  4. jquery
+  5. spring
+  6. java-iii
 
-                Count	     Percentage
- -------------------------------------------------------               
-javascript-i	 118723	      0.13
-html-css	      84935	      0.09
-mysql	      82848	      0.09
-jquery	      60869	      0.07
-spring	      58603	      0.07
-java-iii     	 56733	      0.06
+* FS_JAVA_program -- Most Frequent Class/Module Visited:
+  1. javascript-i
+  2. html-css
+  3. mysql
+  4. jquery
+  5. java-iii
+  6. java-ii
 
-
-* FS_JAVA_program
-
-Most Frequent Class/Module Visited:
------------
-                 Count	Percentage
-javascript-i	  94676	0.18
-html-css	       66968	0.13
-mysql	       65629	0.12
-jquery	       48477	0.09
-java-iii	       43094	0.08
-java-ii	       41966	0.08
- 
-* Data Science Program
-
-Most Frequent Class/Module Visited:
------------
-                    Count	Percentage
-ds-fundamentals	15171	0.18
-ds-sql	          12116	0.14
-ds-classification	10524	0.12
-ds-python      	9610	     0.11
-ds-regression	     6797	     0.08
-ds-stats	          6133	     0.07
+* Data Science Program -- Most Frequent Class/Module Visited:
+  1. ds-fundamentals
+  2. ds-sql
+  3. ds-classification
+  4. ds-python
+  5. ds-regression
+  6. ds-stats
 
 2. Is there a cohort that referred to a lesson significantly more than other cohorts seemed to gloss over? (Chenchen)
 * For Data Sience program, Darden referred classification lesson a lot more than other cohorts. 
@@ -101,17 +89,26 @@ ds-stats	          6133	     0.07
 3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? (Chenchen)
 * The active student hardly access the curriculum is user 704 from Bash cohort, this is a remote student from Full Stack JAVA program. 
 * Students might dropped the class before program end date: 
-      *  user 268 from Xanadu (Full Stack JAVA, in-person),
-      *  user 663 from Hyperion (Full Stack JAVA, remote),
-      *  user 663 from Luna (Full Stack JAVA, remote),
-      *  user 707 from Bash (Full Stack JAVA, remote),
-      *  user 757 from Jupiter (Full Stack JAVA, remote).
+
+      *  user 268 from Xanadu (Full Stack JAVA, in-person)
+      
+      *  user 663 from Hyperion (Full Stack JAVA, remote)
+      
+      *  user 663 from Luna (Full Stack JAVA, remote)
+      
+      *  user 707 from Bash (Full Stack JAVA, remote)
+      
+      *  user 757 from Jupiter (Full Stack JAVA, remote)
 
 4. Is there any suspicious activity, such as users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? (Chenchen)
 * Suspicious users and ip:
+
     * User 313 with ip 173.173.121.126 : web-scarping 225 pages/day 4 years after leaving codeup. 
+    
     * Ip 204.44.112.76 : consider as web-scraping machine.
+    
     * User 111 with ip 67.11.134.242 : can not identify any information.
+    
     * User 354 : need to be cleaned out from the system.
 
 5. What topics are grads continuing to reference after graduation and into their jobs (for each program)? (Mijail)
@@ -120,111 +117,107 @@ By Program:
  
 * Codeup Program: FS_PHP_program
 Most Frequent Class/Module Revisited:
------------
-content          0.22
-javascript-i     0.13
-html-css         0.09
-spring           0.08
-mysql            0.07
-java-iii         0.07
-java-ii          0.05
-jquery           0.05
-java-i           0.05
-javascript-ii    0.05
+  1. content
+  2. javascript-i
+  3. html-css
+  4. spring  
+  5. mysql       
+  6. java-iii    
+  7. java-ii      
+  8. jquery     
+  9. java-i    
+  10. javascript-ii 
  
-Most Frequent Topics Explored:
------------
-fundamentals    0.06
-laravel         0.05
-introduction    0.05
-html-css        0.04
-css-i           0.03
-javascript      0.03
-css-ii          0.03
-php_ii          0.03
-git             0.03
-bom-and-dom     0.02
+Most Frequent Topics Revisited:
+
+  1. fundamentals 
+  2. laravel  
+  3. introduction 
+  4. html-css
+  5. css-i        
+  6. javascript 
+  7. css-ii
+  8. php_ii    
+  9. git         
+  10. bom-and-dom 
 
 * Codeup Program: FS_JAVA_program
 Most Frequent Class/Module Revisited:
------------
-javascript-i     0.16
-html-css         0.12
-mysql            0.11
-jquery           0.08
-spring           0.08
-java-iii         0.08
-java-ii          0.08
-java-i           0.06
-javascript-ii    0.05
-appendix         0.05
+
+  1. javascript-i 
+  2. html-css       
+  3. mysql           
+  4. jquery       
+  5. spring        
+  6. java-iii        
+  7. java-ii          
+  8. java-i         
+  9. javascript-ii   
+  10. appendix        
  
 Most Frequent Topics Explored:
------------
-introduction         0.07
-fundamentals         0.06
-css-i                0.06
-css-ii               0.04
-search_index.json    0.03
-arrays               0.03
-bom-and-dom          0.03
-ajax                 0.02
-relationships        0.02
-functions            0.02
+
+  1. introduction     
+  2. fundamentals 
+  3. css-i           
+  4. css-ii           
+  5. search_index.json   
+  6. arrays          
+  7. bom-and-dom   
+  8. ajax          
+  9. relationships   
+  10. functions     
 
 * Codeup Program: DS_program
 Most Frequent Class/Module Revisited:
------------
-fundamentals      0.09
-classification    0.09
-1-fundamentals    0.08
-sql               0.08
-3-sql             0.06
-python            0.06
-4-python          0.05
-6-regression      0.05
-appendix          0.04
-5-stats           0.04
+
+  1. fundamentals    
+  2. classification 
+  3. sql        
+  4. python         
+  5. regression  
+  6. appendix     
+  7. stats      
 
 Most Frequent Topics Explored:
------------
-overview                     0.04
-1-overview                   0.04
-project                      0.03
-AI-ML-DL-timeline.jpg        0.03
-modern-data-scientist.jpg    0.03
-cli                          0.03
-search_index.json            0.02
-1.1-intro-to-data-science    0.02
-scale_features_or_not.svg    0.02
-explore                      0.02
+
+  1. overview              
+  2. overview           
+  3. project                 
+  4. AI-ML-DL-timeline.jpg     
+  5. modern-data-scientist.jpg   
+  6. cli                        
+  7. search_index.json         
+  8. 1.1-intro-to-data-science   
+  9. scale_features_or_not.svg  
+  10. explore                     
 
 
 7. Which lessons are least accessed? (Mijail)
 
 * Codeup Program: FS_PHP_program
 Least Frequent Class/Module Revisited:
------------
-2.00.02_Navigating_Excel                
-2.00.05_Charts_PivotTables_Sparklines   
-2.02.00_Inferential_Stats               
-Exercises                               
-ajax-api-request.html  
+
+  1. 2.00.02_Navigating_Excel                
+  2. 2.00.05_Charts_PivotTables_Sparklines   
+  3. 2.02.00_Inferential_Stats               
+  4. Exercises                               
+  5. ajax-api-request.html  
 
 * Codeup Program: FS_JAVA_program
 Least Frequent Class/Module Revisited:
------------
-Correlation.md                 
-Clustering_Explore             
-5.04.04_LeastAngleRegression   
-6.00_Intro                     
-curie-python-assessment    
+
+  1. Correlation.md                 
+  2. Clustering_Explore             
+  3. 5.04.04_LeastAngleRegression   
+  4. 6.00_Intro                     
+  5. curie-python-assessment    
 
 * Codeup Program: DS_program
 Least Frequent Class/Module Revisited:
------------
-modern-data-scientist.jpg   
-git                         
-spring                      
-login                       
-individual-project     
+
+  1. modern-data-scientist.jpg   
+  2. git                         
+  3. spring                      
+  4. login                       
+  5. individual-project     
