@@ -84,7 +84,7 @@ Thank you,
 
 2. Is there a cohort that referred to a lesson significantly more than other cohorts seemed to gloss over? (Chenchen)
 * For Data Sience program, Darden referred classification lesson a lot more than other cohorts. 
-* For Full Stack JAVA program, Ceres referred html-css class tha most.
+* For Full Stack JAVA program, Ceres referred html-css class the most.
 
 3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? (Chenchen)
 * The active student hardly access the curriculum is user 704 from Bash cohort, this is a remote student from Full Stack JAVA program. 
