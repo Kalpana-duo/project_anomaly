@@ -209,8 +209,8 @@ def most_grad_revisits(df):
     for program in lst:
 
         if program != "Front_End_program":
-            plt.figure(figsize = (8, 4))
-            sns.set(font_scale = 1)
+            plt.figure(figsize = (8, 3))
+            sns.set(font_scale = 0.7)
 
             df1 = grad[grad["program_type"] == program]
 
@@ -238,8 +238,8 @@ def most_grad_revisits_topics(df):
     for program in lst:
 
         if program != "Front_End_program":
-            plt.figure(figsize = (8, 4))
-            sns.set(font_scale = 1)
+            plt.figure(figsize = (8, 3))
+            sns.set(font_scale = 0.7)
 
             df1 = grad[grad["program_type"] == program]
 
@@ -266,8 +266,8 @@ def most_current_visits(df):
     
     for program in lst:
         
-        plt.figure(figsize = (8, 4))
-        sns.set(font_scale = 1)
+        plt.figure(figsize = (8, 3))
+        sns.set(font_scale = 0.7)
 
         df1 = curr[curr["program_type"] == program]
 
@@ -297,17 +297,18 @@ def value_counts_and_frequencies(s: pd.Series, dropna=True) -> pd.DataFrame:
 '''function that returns the top 30 most frequent classes as a plot'''
 def return_most_visited_lessons_all_time(df):
     
-    plt.figure(figsize=(14, 10))
-    sns.set(font_scale = 1)
+    plt.figure(figsize=(12, 8))
+    sns.set(font_scale = 0.7)
 
     sns.countplot(
-        y = "topic", 
+        y = "class", 
         data = df,
-        order = df["topic"].value_counts(dropna = True)[0:31].index,
+        order = df["class"].value_counts(dropna = True)[0:31].index,
         palette = "crest_r")
 
     plt.ylabel(None)
-    plt.title("Most Explored Codeup Topics: All Time")
+    plt.xlabel("Number of Visits")
+    plt.title("Most Explored Codeup Lessons: All Time")
     plt.show()
 
 
