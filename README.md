@@ -12,17 +12,19 @@ Mijail Mariano
 
 ----
 
-### Project Goal
-* The goal is by analyzing Codeup curriculum access data, identify suspicious activities and ip address. Also get some insights from this data for future use.
+### **Project Goal**
 
-### Project Description 
-* In this report, we used Codeup curriculum access data with anomaly detection method to answer the questions list in the scenario email.
+* The goal of this analysis was to study online curriculum trends and potential suspicious activity. For this study, we use anomaly detection techniques on a Codeup LLC curriculum log and IP address dataset of ~1mil records. Post analysis, we provide insights for Codeup's strategic lesson planning and make recommendations to mitigate suspicious online behavior.
+
+#### **Project Description**
+
+* We use a scenario-based approach to help inform senior Codeup stakeholders on their online curriculum & platforms strategy. The final report is structured in a question-and-answer format to raise insights on the focal questions asked from the scenario.
 
 ----
 
-### Data Dictionary
+### **Data Dictionary**
 
-“Logs” Table:
+Logs Table:
 * Datetime (index): The date and time when the User accessed Codeup’s domain url
 * Endpoint: The target or requested Codeup service url where information is accessed
 * User_id: The unique Codeup student, alumni, or staff identification number
@@ -30,26 +32,24 @@ Mijail Mariano
 * IP: A computer’s unique internet protocol identifier that is used to communicate over a network 
 * name (cohort): The cohort name
 
-“Cohorts” Table:
+Cohorts Table:
 * Slack: Slack channel the User is a member of
 * Start_date: Cohort/User Codeup program start date
 * End_date: Cohort/User Codeup program end date
 * Program_id: Identifier that links the User to the Codeup program they were enrolled in
 
-
 ----
 
-### Steps to Reproduce
+### **Steps to Reproduce**
 
-1. You will need an env.py file that contains the hostname, Username and password of Codeup LLC MySQL database which contains the logs & cohort tables. Store that env file locally in the repository.
+1. You will need an env.py file that contains the hostname, Username, and password of Codeup LLC MySQL database which contains the logs & cohort tables. Store that env file locally in the repository.
 2. Clone this repo (including the acquire_final.py and prepare_final.py) (confirm .gitignore is hiding your env.py file)
 3. Primary libraries include pandas, matplotlib, seaborn, numpy, os.
 4. You should be able to run final_report with this environment.
 
-
 ----
 
-### Scenario:
+### **Scenario:**
 
 --
 
@@ -62,7 +62,7 @@ I have some questions for you that I need answered before the board meeting Thur
 1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
 2. Is there a cohort that referred to a lesson significantly more than other cohorts seemed to gloss over?
 3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students?
-4. Is there any suspicious activity, such as Users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses?
+4. Is there any suspicious activity, such as Users/machines/etc. accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses?
 5. At some point in 2019, the ability for students and alumni to access both curriculums (web dev to ds, ds to web dev) should have been shut off. Do you see any evidence of that happening? Did it happen before?
 6. What topics are grads continuing to reference after graduation and into their jobs (for each program)?
 7. Which lessons are least accessed?
@@ -70,10 +70,9 @@ I have some questions for you that I need answered before the board meeting Thur
 
 --
 
-
 ----
 
-### Questions Selected and Answered
+### **Questions Explored and Answered**
 
 1. Which lesson appears to attract the most traffic consistently across cohorts (per program)?
 (Mijail)
@@ -105,13 +104,13 @@ I have some questions for you that I need answered before the board meeting Thur
 
 2. Is there a cohort that referred to a lesson significantly more than other cohorts seemed to gloss over? (Chenchen)
 
-* For Data Sience program, Darden referred classification lesson a lot more than other cohorts. 
+* For Data Science program, Darden referred classification lesson a lot more than other cohorts. 
 * For Full Stack JAVA program, Ceres referred html-css class the most.
 
 3. Are there students who, when active, hardly access the curriculum? If so, what information do you have about these students? (Chenchen)
 
-* The active student hardly access the curriculum is User 704 from Bash cohort, this is a remote student from Full Stack JAVA program. 
-* Students might dropped the class before program end date: 
+* The active student hardly accesses the curriculum is User 704 from Bash cohort, this is a remote student from Full Stack JAVA program. 
+* Students may drop the class before program end date: 
 
       *  User 268 from Xanadu (Full Stack JAVA, in-person)
       
@@ -123,17 +122,17 @@ I have some questions for you that I need answered before the board meeting Thur
       
       *  User 757 from Jupiter (Full Stack JAVA, remote)
 
-4. Is there any suspicious activity, such as Users/machines/etc accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? (Chenchen)
+4. Is there any suspicious activity, such as Users/machines/etc. accessing the curriculum who shouldn’t be? Does it appear that any web-scraping is happening? Are there any suspicious IP addresses? (Chenchen)
 
 * ``Suspicious Users and ip:``
 
-    * User 313 with ip 173.173.121.126 : web-scarping 225 pages/day 4 years after leaving codeup. 
+    * User 313 with ip 173.173.121.126: web-scarping 225 pages/day 4 years after leaving Codeup. 
     
-    * Ip 204.44.112.76 : consider as web-scraping machine.
+    * Ip 204.44.112.76: consider as web-scraping machine.
     
-    * User 111 with ip 67.11.134.242 : can not identify any information.
+    * User 111 with ip 67.11.134.242: cannot identify any information.
     
-    * User 354 : need to be cleaned out from the system.
+    * User 354: need to be cleaned out from the system.
 
 5. What topics are grads continuing to reference after graduation and into their jobs (for each program)? (Mijail)
 
@@ -204,7 +203,7 @@ Most Frequent Class/Module Revisited:
   7. stats
   8. appendix     
   9. timeseries
-  10. serch
+  10. search
 
 Most Frequent Topics Revisited:
 
@@ -214,11 +213,10 @@ Most Frequent Topics Revisited:
   4. modern-data-scientist.jpg     
   5. mysql-overview   
   6. 1-overview                        
-  7. anomaly detection cartoon.jpegg         
+  7. anomaly detection cartoon.jpeg         
   8. explore   
   9. acquire  
   10. intro to data science                     
-
 
 7. Which lessons are least accessed? (Mijail)
 
@@ -235,7 +233,7 @@ Least Frequent Topic Visited:
   1. twitter.html
   2. 9.3-joins
   3. 120
-  4. apendix
+  4. appendix
   5. PreWork
 
 * Codeup Program: DS_program
@@ -253,3 +251,5 @@ Least Frequent Topic Visited:
   3. 4-navigating-the-filesystem 
   4. cls
   5. explore-old
+
+
