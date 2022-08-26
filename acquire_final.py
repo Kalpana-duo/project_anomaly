@@ -39,9 +39,9 @@ def get_logs_dataset():
                 slack,
                 start_date,
                 end_date,
-                program_id,
-                FROM curriculum_logs.logs
-                LEFT JOIN curriculum_logs.cohorts ON curriculum_logs.logs.cohort_id = curriculum_logs.cohorts.id;
+                program_id
+                FROM logs
+                LEFT JOIN cohorts ON logs.cohort_id = cohorts.id;
                 '''
 
         # creating the df
