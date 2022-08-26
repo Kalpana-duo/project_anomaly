@@ -284,7 +284,7 @@ def most_current_visits(df):
         plt.title(f'While Enrolled: Top-10 Lessons Visited: {program}')
         plt.show()
 
-
+'''function that returns back a series value and total count'''
 def value_counts_and_frequencies(s: pd.Series, dropna=True) -> pd.DataFrame:
     return pd.merge(
         s.value_counts(dropna=True)[0:6].rename('Count'),
