@@ -14,7 +14,7 @@ Mijail Mariano
 
 ### **Project Goal**
 
-* The goal of this analysis was to study online curriculum trends and potential suspicious activity. For this study, we use anomaly detection techniques on a Codeup LLC curriculum log and IP address dataset of ~1mil records. Post analysis, we provide insights for Codeup's strategic lesson planning and make recommendations to mitigate suspicious online behavior.
+* The goal of this analysis was to study trends of online curriculum visits and potential suspicious activity. For this study, we use anomaly detection techniques on a Codeup LLC curriculum log and IP address dataset of ~1mil records. Post analysis, we provide insights for Codeup's strategic lesson planning and make recommendations to mitigate suspicious online behavior.
 
 #### **Project Description**
 
